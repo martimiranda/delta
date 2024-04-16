@@ -5,7 +5,7 @@ window.onload = function() {
 async function mostrar_productos() {
 
     try {
-        const response = await fetch('https://localhost:8000/mostrar_productos/');
+        const response = await fetch('http://localhost:8000/mostrar_productos/');
         const productos = await response.json();
 
         const productosDiv = document.getElementById("productos");
@@ -25,7 +25,7 @@ async function mostrar_productos() {
 // Función para eliminar un producto
 async function borrar_producto(id) {
     try {
-        const response = await fetch('https://localhost:8000/borrar_producto/' + id, {
+        const response = await fetch('http://localhost:8000/borrar_producto/' + id, {
             method: "DELETE"
         });
         if (response.ok) {
@@ -44,7 +44,7 @@ async function borrar_producto(id) {
 async function mostrar_detalles_productos() {
 
             try {
-                const response = await fetch(`https://localhost:8000/mostrar_detalles_producto/${id}`);
+                const response = await fetch(`http://localhost:8000/mostrar_detalles_producto/${id}`);
                 const producto = await response.json();
 
                 const detalleDiv = document.getElementById("detalle-info");
