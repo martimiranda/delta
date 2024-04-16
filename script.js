@@ -70,3 +70,8 @@ function añadir_producto() {
 function cerrarDetalle() {
     document.getElementById("detalle-producto").style.display = "none";
 }
+
+function mostrarForm() {
+    const formulario = document.getElementById("formulario");
+    formulario.style.display = "block";
+}
