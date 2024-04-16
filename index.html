@@ -4,21 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicación Cliente</title>
+    <title>Productos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1>Listado de Productos</h1>
-    <div id="productos"></div>
+    <div id="productos">
+        <ul>
 
-    <div id="detalle-producto" style="display: none;">
-        <h2>Detalles del Producto</h2>
-        <div id="detalle-info"></div>
-        <button onclick="cerrarDetalle()">Cerrar</button>
+        </ul>
     </div>
+
+    <div id="detalle-producto" style="display: block;">
+        <h2>Detalles del Producto</h2>
+        <div id="detalle-info">
+            <ul>
+
+            </ul>
+        </div>
+        <button onclick="">Borrar Producto</button>
+        <button onclick="cerrarDetalle()">Cerrar Detalles</button>
+    </div>
+
+    <button>Añadir Producto</button>
 
     <script src="script.js"></script>
 </body>
-    
+
 </html>
