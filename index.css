@@ -1,0 +1,11 @@
+/* Estilos para la lista de productos */
+#productos {
+    margin-bottom: 20px;
+}
+
+/* Estilos para los detalles del producto */
+#detalle-producto {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
