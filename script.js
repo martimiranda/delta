@@ -1,17 +1,19 @@
-function mostrar_productos() {
-    fetchData('https://localhost:8000/mostrar_productos')
-        .then(data => {
-            console.log('Datos recibidos:', data);
-            var id = data.id;
-            var nombre = data.nombre;
-            var descripcion = data.descripcion;
-            var precio = data.precio;
+async function mostrar_productos() {
 
+    try {
+        const response = await fetch('https://localhost:8000/mostrar_productos');
+        const productos = await response.json();
 
-        })
-        .catch(error => {
-            console.error('Hubo un error al obtener los datos:', error);
+        const productosDiv = document.getElementById("productos");
+        productos.forEach(producto => {
+            const productoDiv = document.createElement("div");
+            productoDiv.innerHTML = `<p>${producto.nombre}</p>`;
+            productoDiv.addEventListener("click", () => mostrar_detalles_productos(producto.id));
+            productosDiv.appendChild(productoDiv);
         });
+    } catch (error) {
+        console.error("Error al obtener la lista de productos:", error);
+    }
 }
 
 
@@ -35,16 +37,30 @@ async function borrar_producto(id) {
     }
 }
 
-function mostrar_detalles_productos() {
+async function mostrar_detalles_productos() {
     fetchData('https://localhost:8000/mostrar_detalles_producto')
-        .then(data => {
+        .then(async data => {
             console.log('Datos recibidos:', data);
 
-        })
-        .catch(error => {
-            console.error('Hubo un error al obtener los datos:', error);
-        });
+            try {
+                const response = await fetch(`https://localhost:8000/mostrar_detalles_producto/${id}`);
+                const producto = await response.json();
+
+                const detalleDiv = document.getElementById("detalle-info");
+                detalleDiv.innerHTML = `
+            <p><strong>Nombre:</strong> ${producto.nombre}</p>
+            <p><strong>Descripción:</strong> ${producto.descripcion}</p>
+            <p><strong>Precio:</strong> ${producto.precio}</p>
+        `;
+
+                document.getElementById("detalle-producto").style.display = "block";
+            } catch (error) {
+                console.error("Error al obtener los detalles del producto:", error);
+            }
+        }
+        )
 }
+
 
 function añadir_producto() {
 
