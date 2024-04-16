@@ -1,15 +1,55 @@
 function mostrar_productos(){
-    $.ajax({
-        url: "https://eventify.ieti.site/creation_events_page/",
-        type: "POST", // Cambiado a método POST
-        headers: {
-            "Authorization": "Token d75ebfca0ec3f92c5979a49854718d974127019b"
-        },
-        data: JSON.stringify(datos), // Convertir datos a formato JSON
-        contentType: "application/json", // Establecer tipo de contenido a JSON
-        success: mostrarRespuesta, // Manejar respuesta exitosa
-        error: function(xhr, status, error) {
-            console.error("Error al enviar datos:", error);
-        }
+    fetchData('https://localhost:8000/mostrar_productos')
+    .then(data => {
+      console.log('Datos recibidos:', data);
+      var id = data.id;
+      var nombre = data.nombre;
+      var descripcion = data.descripcion;
+      var precio = data.precio;
+      
+      
+    })
+    .catch(error => {
+      console.error('Hubo un error al obtener los datos:', error);
     });
 }
+
+
+function fetchData(url) {
+return new Promise((resolve, reject) => {
+    fetch(url)
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        resolve(data);
+    })
+    .catch(error => {
+        reject(error);
+    });
+});
+}
+
+function mostrar_detalles_productos(){
+    fetchData('https://localhost:8000/mostrar_detalles_producto')
+    .then(data => {
+      console.log('Datos recibidos:', data);
+      
+    })
+    .catch(error => {
+      console.error('Hubo un error al obtener los datos:', error);
+    });
+}
+
+function añadir_producto(){
+
+}
+
+function borrar_producto(){
+    
+}
+
+  
