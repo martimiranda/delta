@@ -19,7 +19,7 @@ function mostrar_productos() {
 // Función para eliminar un producto
 async function borrar_producto(id) {
     try {
-        const response = await fetch('', {
+        const response = await fetch('https://localhost:8000/borrar_producto' + id, {
             method: "DELETE"
         });
         if (response.ok) {
@@ -35,25 +35,6 @@ async function borrar_producto(id) {
     }
 }
 
-
-function fetchData(url) {
-    return new Promise((resolve, reject) => {
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                resolve(data);
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
-}
-
 function mostrar_detalles_productos() {
     fetchData('https://localhost:8000/mostrar_detalles_producto')
         .then(data => {
@@ -67,4 +48,9 @@ function mostrar_detalles_productos() {
 
 function añadir_producto() {
 
+}
+
+// Función para cerrar los detalles del producto
+function cerrarDetalle() {
+    document.getElementById("detalle-producto").style.display = "none";
 }
